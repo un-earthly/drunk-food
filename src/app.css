@@ -1,0 +1,17 @@
+@import url('./components/HomePage/home.css');
+@import url('./components/Navbar/navbar.css');
+
+::selection{
+    color: aliceblue;
+}
+
+::-webkit-scrollbar{
+    background-color: darkcyan;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(144, 238, 144, 0.37);
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: rgba(144, 238, 144, 0.493);
+}

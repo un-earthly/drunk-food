@@ -15,7 +15,7 @@ export default function Drink() {
     }, [])
     return (
 
-        <div className='row row-cols-1 row-cols-lg-3 my-5 mx-auto'>
+        <div className='row row-cols-1 row-cols-lg-3 g-2'>
             {
                 loading ?
                     <>
@@ -27,10 +27,13 @@ export default function Drink() {
                     </> :
                     drinks.map((drink) => {
                         return <Card
-                            key={drink.idCategory}
+                            key={drink.idDrink}
                             thumb={drink.strDrinkThumb}
                             btnText={'Show Details'}
                             cardTitle={drink.strDrink}
+                            drinkOrFood='drink'
+                            id={drink.idDrink}
+
                         />
                     })
             }

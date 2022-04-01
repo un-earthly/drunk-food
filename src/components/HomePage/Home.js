@@ -7,10 +7,10 @@ export default function Home() {
   const [drinks, setDrinks] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=beef')
       .then(res => res.json())
       .then(data => {
-        setFoods(data.categories)
+        setFoods(data.meals)
         setLoading(false)
       })
   }, [])
@@ -23,7 +23,7 @@ export default function Home() {
       })
   }, [])
   return (
-    <div className='row row-cols-1 row-cols-lg-3 my-5 mx-auto'>
+    <div className='row row-cols-1 row-cols-lg-3 g-2'>
       {
         loading ?
           <>
@@ -35,27 +35,31 @@ export default function Home() {
             <MyCardSkeleton />
             <MyCardSkeleton />
           </>
-          : 
+          :
           <>
             {
               foods.map((food) => {
                 return <Card
-                  key={food.idCategory}
-                  thumb={food.strCategoryThumb}
-                  cardTitle={food.strCategory}
-                  description={food.strCategoryDescription.slice(0, 50)}
+                  key={food.idMeal}
+                  thumb={food.strMealThumb}
+                  cardTitle={food.strMeal.length > 30 ? food.strMeal.slice(0, 20) + '...' : food.strMeal}
                   btnText={'Show Details'}
-                  strCategory={food.strCategory}
+                  name={food.strMeal}
+                  id={food.idMeal}
+                  drinkOrFood='food'
                 />
               })
             }
             {
               drinks.map((drink) => {
                 return <Card
-                  key={drink.idCategory}
+                  key={drink.idDrink}
                   thumb={drink.strDrinkThumb}
                   btnText={'Show Details'}
                   cardTitle={drink.strDrink}
+                  id={drink.idDrink}
+                  drinkOrFood='drink'
+                  name={drink.strDrink}
                 />
               })
             }

@@ -6,35 +6,43 @@ export default function Food() {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=beef')
       .then(res => res.json())
-      .then(data =>{ 
-        setFoods(data.categories)
+      .then(data => {
+        setFoods(data.meals)
         setLoading(false)
       })
   }, [])
-  return (
 
-    <div className='row row-cols-1 row-cols-lg-3 my-5 mx-auto'>
+
+  console.log(foods)
+  return (
+    <div className='row row-cols-1 row-cols-lg-3 g-2'>
       {
-        loading?
-        <>
-          <MyCardSkeleton />
-          <MyCardSkeleton />
-          <MyCardSkeleton />
-          <MyCardSkeleton />
-          <MyCardSkeleton />
-        </>:
-        foods.map((food) => {
-          return <Card
-            key={food.idCategory}
-            thumb={food.strCategoryThumb}
-            cardTitle={food.strCategory}
-            description={food.strCategoryDescription.slice(0, 50)}
-            btnText={'Show Details'}
-            strCategory={food.strCategory}
-          />
-        })
+        loading
+
+          ?
+          <>
+            <MyCardSkeleton />
+            <MyCardSkeleton />
+            <MyCardSkeleton />
+            <MyCardSkeleton />
+            <MyCardSkeleton />
+          </>
+          :
+          foods.map((food) => {
+            return <Card
+              key={food.idMeal}
+              thumb={food.strMealThumb}
+              cardTitle={food.strMeal}
+              btnText={'Show Details'}
+              strCategory={food.strCategory}
+              id={food.idMeal}
+              drinkOrFood='food'
+            />
+          })
+
+
 
       }
     </div>

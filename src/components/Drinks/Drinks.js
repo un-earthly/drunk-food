@@ -31,6 +31,7 @@ export default function Drink() {
                             thumb={drink.strDrinkThumb}
                             btnText={'Show Details'}
                             cardTitle={drink.strDrink}
+                            name={drink.strDrink}
                             drinkOrFood='drink'
                             id={drink.idDrink}
 

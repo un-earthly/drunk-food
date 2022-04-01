@@ -35,6 +35,7 @@ export default function Food() {
               key={food.idMeal}
               thumb={food.strMealThumb}
               cardTitle={food.strMeal}
+              name={food.strMeal}
               btnText={'Show Details'}
               strCategory={food.strCategory}
               id={food.idMeal}
